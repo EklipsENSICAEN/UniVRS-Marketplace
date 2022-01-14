@@ -91,9 +91,9 @@ session_start();
         </a>     
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li><h4> <?php echo $result['pla_pme']; ?> ₿ </h4></li>
-                <li><a href="buyunicoins.html" class="nav-link "><button type="button" class="btn btn-primary">Buy UniCoins</button></a></li>
-                <li><a href="sellunicoins.html" class="nav-link "><button type="button" class="btn btn-primary">Sell UniCoins</button></a></li>
+                <li><h4> <?php echo $result['pla_pme']; ?> UniCoins </h4></li>
+                <li><a href="buyunicoins.php" class="nav-link "><button type="button" class="btn btn-primary">Buy UniCoins</button></a></li>
+                <li><a href="sellunicoins.php" class="nav-link "><button type="button" class="btn btn-primary">Sell UniCoins</button></a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
@@ -202,10 +202,10 @@ session_start();
                                                                     <h6 class="m-0"><?php echo $skin["ski_description"] ?> </h6>
                                                                 </td>
                                                                 <td>
-                                                                    <h6 class="m-0"><?php echo $skin["ski_price"] ?>₿</h6>
+                                                                    <h6 class="m-0"><?php echo $skin["ski_price"] ?> UniCoins</h6>
                                                                 </td>
                                                                 <td class="text-right">
-                                                                <button onclick="removeItBtnHandle()" type="button" class="btn btn-success">Remove It !</button>
+                                                                <button onclick="removeItBtnHandle(<?php echo $skin['ski_id'] ?>)" type="button" class="btn btn-success">Remove It !</button>
                                                                 </td>
                                                             </tr>
                                                             <?php
@@ -238,11 +238,11 @@ session_start();
                                                                     <h6 class="m-0"><?php echo $skin["ski_description"] ?> </h6>
                                                                 </td>
                                                                 <td>
-                                                                    <h6 class="m-0"><?php echo $skin["ski_price"] ?>₿</h6>
+                                                                    <h6 class="m-0"><?php echo $skin["ski_price"] ?>UniCoins</h6>
                                                                 </td>
                                                                 <td class="text-right">
                                                                     <?php if( $skin["ski_sell"] == false) { ?>
-                                                                        <button type="button" class="btn btn-success"> Sale It !</button>
+                                                                        <button onclick="saleItBtnHandle(<?php echo $skin['ski_id'] ?>)" type="button" class="btn btn-success"> Sale It !</button>
                                                                     <?php } ?>
                                                                 </td>
                                                             </tr>
@@ -282,22 +282,28 @@ session_start();
             
         }
 
-        function removeItBtnHandle() {
-            console.log("hiii")
-            var nom = 'removeItem.php';
+        function removeItBtnHandle(id) {
+            var nom = 'remove_item.php?id='+id;
             var req = new XMLHttpRequest();
             req.onreadystatechange = function(){
+                location.reload();
             }
-            req.open("UPDATE", nom, true);
+            req.open("GET", nom, true);
             req.overrideMimeType("text/plain");
             req.send(null);     
+        }
+
+        function saleItBtnHandle(id){
+            var nom = 'sell_item.php?id='+id;
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function(){
+                location.reload();
+            }
+            req.open("GET", nom, true);
+            req.overrideMimeType("text/plain");
+            req.send(null); 
         }
     </script>
 </body>
 </html>
 
-
-
-<?php
-    echo "<script>console.log('merde' );</script>";
-?>

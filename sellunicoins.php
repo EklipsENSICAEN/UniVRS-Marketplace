@@ -1,5 +1,7 @@
+<?php include('marketdashboard_request.php') ?>
 <!DOCTYPE html>
 <html lang="en">
+<?php session_start() ?>
 <head>
     <title>UniVRs - Market Place</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
@@ -39,7 +41,7 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="index.html" class="b-brand">
+                <a href="marketdashboard.php" class="b-brand">
                     <div class="b-bg">
                         <i class="feather icon-shopping-cart"></i>
                     </div>
@@ -53,13 +55,13 @@
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                        <a href="marketdashboard.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="buypage.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-corner-down-left"></i></span><span class="pcoded-mtext">Buy items</span></a>
+                        <a href="buypage.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-corner-down-left"></i></span><span class="pcoded-mtext">Buy items</span></a>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item">
-                        <a href="sellpage.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-corner-down-right"></i></span><span class="pcoded-mtext">Sell items</span></a>
+                        <a href="sellpage.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-corner-down-right"></i></span><span class="pcoded-mtext">Sell items</span></a>
                     </li>
                 </ul>
             </div>
@@ -71,7 +73,7 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
-            <a href="index.html" class="b-brand">
+            <a href="marketdashboard.php" class="b-brand">
                <div class="b-bg">
                    <i class="feather icon-trending-up"></i>
                </div>
@@ -83,9 +85,9 @@
         </a>     
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                <li><h4>Your wallet : 214.50 UniCoins</h4></li>
-                <li><a href="buyunicoins.html" class="nav-link "><button type="button" class="btn btn-primary">Buy UniCoins</button></a></li>
-                <li><a href="sellunicoins.html" class="nav-link "><button type="button" class="btn btn-primary">Sell UniCoins</button></a></li>
+                <li><h4>Your wallet : <?php echo $result['pla_pme']; ?> UniCoins</h4></li>
+                <li><a href="buyunicoins.php" class="nav-link "><button type="button" class="btn btn-primary">Buy UniCoins</button></a></li>
+                <li><a href="sellunicoins.php" class="nav-link "><button type="button" class="btn btn-primary">Transfer UniCoins</button></a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
@@ -107,7 +109,9 @@
                                     <div class="media">
                                         <img class="img-radius" src="assets/images/user/avatar-1.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <p><strong>John Doe</strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
+                                            <p><strong><?php 
+                            echo $_SESSION['mail'];
+                        ?></strong><span class="n-time text-muted"><i class="icon feather icon-clock m-r-10"></i>30 min</span></p>
                                             <p>New item sell !</p>
                                         </div>
                                     </div>
@@ -127,7 +131,9 @@
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">
                                 <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
-                                <span>John Doe</span>
+                                <span><?php 
+                            echo $_SESSION['mail'];
+                        ?></span>
                                 <a href="auth-signin.html" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
@@ -152,6 +158,7 @@
                     <div class="main-body">
                         <div class="page-wrapper">
                             <!-- [ Main Content ] start -->
+                            
                             <div class="row">
                                 <div class="col-md-6 col-xl-3">
                                     <div class="card">
@@ -165,21 +172,21 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div>
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">10 UniCoins</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">25 UniCoins</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">50 UniCoins</a>
-                                        </li>
-                                    </ul>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">UniCoins</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Amount (to the nearest unicoin)">
+                                    </div>
+                                  
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="text-center">
+                                <button onclick="sellCoins()" type="submit" class="btn btn-primary">Transfer</button>
+                            </div>
+                            <!--div class="row">
                                 <div class="col-sm-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -196,7 +203,7 @@
                                                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                                             <label class="form-check-label" for="exampleCheck1">I agree with the terms</label>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Transfer</button>
+                                                        
                                                     </form>
                                                 </div>
                                                 <div class="col-md-6">
@@ -208,11 +215,11 @@
                                                     </form>
                                                 </div>
                                             </div>                            
-                            <!-- [ Main Content ] end -->
+                           
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                 </div>
@@ -272,6 +279,19 @@
     <script src="assets/js/vendor-all.min.js"></script>
 	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
+    <script>
+    function sellCoins() {
+            const val = document.querySelector('input').value;
+            var nom = 'sell_unicoins.php?amount='+val;
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function(){
+                location.reload();
+            }
+            req.open("GET", nom, true);
+            req.overrideMimeType("text/plain");
+            req.send(null);
+    }
+    </script>
 
 </body>
 </html>
