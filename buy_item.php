@@ -16,19 +16,10 @@ $sqlSelect2R = $connexion->prepare($sqlSelect11);
 $sqlSelect2R->execute();
 $price = $sqlSelect2R->fetchAll();
 
-print_r($pme[0]['pla_pme']);
-echo '<br />';
-print_r($price);
-
 $new_pme = $pme[0]['pla_pme'] +  $price[0]['ski_price'];
 
-print_r($new_pme);
 $id = $_GET['id'];
 $sql2 = "update player natural join skin set pla_pme = $new_pme where ski_id = $id; ";
-print_r($sql2);
-print_r($connexion->exec($sql2)); 
-
-
 
 $sql3 = "update skin set pla_email = '" . $_SESSION['mail'] ."' where ski_id = '" . $_GET['id'] ."';";
 $connexion->exec($sql3); 
